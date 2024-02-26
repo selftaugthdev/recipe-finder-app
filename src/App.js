@@ -1,22 +1,32 @@
-import logo from './logo.svg';
+import React, { useEffect ,useState } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const APP_ID = "6d7d58f8";
+  const APP_KEY = "e393fd156855df5c74058a433e342bd4	";
+  const {food_recipes, setfood_recipes} = useState([]);
+  const {search_recipes, setSearch_recipes} = useState('');
+  const {search_query, setSearch_query} = useState('chicken');
+
+  useEffect(() => {
+    getRecipesFunction();
+  }, [search_query]);
+
+  const getRecipesFunction = async () => {
+    const response = await fetch(`https://api.edamam.com/search?q=${search_query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
+    const data = await response.json();
+    setfood_recipes(data.hits);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>
+          Recipe Finder App
+        </h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Amazing Recipes!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
