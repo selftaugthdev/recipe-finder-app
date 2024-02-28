@@ -5,9 +5,9 @@ const RecipeCard = ({ recipe }) => {
     <div className="overflow-hidden transition-transform bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105">
         <div className="relative">
             <img className="object-cover object-center w-full h-48 rounded-t-lg"
-            src="{recipe.name}" alt="{recipe.label}" />
-            <div className="absolute px-2 py-1 text-white bg-indigo-500 rounded top-2 left-2">
-                {recipe.dishtype[0]}
+            src={recipe.image} alt={recipe.label} />
+            <div className="absolute px-2 py-1 text-white bg-green-500 rounded top-2 left-2">
+                {recipe.healthLabels[0]} | {recipe.dietLabels.length > 0 ? recipe.dietLabels[0] : 'Balanced'}
             </div>
         </div>
         <div className="p-4">
@@ -18,7 +18,7 @@ const RecipeCard = ({ recipe }) => {
                 <span className="block mb_1">
                     <b>Ingredients:</b>
                 </span>
-                {recipe.ingredientLines.map((ingredient, index) => (
+                {recipe.ingredientLines && recipe.ingredientLines.map((ingredient, index) => (
                     <span key={index} className="block pl-4">
                         {ingredient}
                     </span>
@@ -26,15 +26,14 @@ const RecipeCard = ({ recipe }) => {
             </div>
             <div className="flex items-center justify-between">
                 <a 
-                href={"/"}
+                href={recipe.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-indigo-500 hover:underline"
                 >  
                 View Recipe                
                 </a>
-                <p>-----------------------</p>
-                <div className="flex items-center text-gray-600"> 
+                {/* <div className="flex items-center text-gray-600"> 
             <span className="flex items-center mr-4"> 
               <svg 
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +69,7 @@ const RecipeCard = ({ recipe }) => {
               </svg> 
               6 
             </span> 
-          </div>
+          </div> */}
             </div>
         </div>
     </div>

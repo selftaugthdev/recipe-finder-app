@@ -1,23 +1,26 @@
-import React, { useEffect ,useState } from 'react';
-import RecipeCard from './RecipeCard.jsx';
+import React, { useEffect, useState, useCallback } from 'react';
+import RecipeCard from './RecipeCard';
 import './App.css';
 
 const App = () => {
   const APP_ID = "6d7d58f8";
-  const APP_KEY = "e393fd156855df5c74058a433e342bd4	";
+  const APP_KEY = "e393fd156855df5c74058a433e342bd4";
   const [food_recipes, setFood_recipes] = useState([]);
   const [search_recipe, setSearch_recipe] = useState('');
   const [search_query, setSearch_query] = useState('chicken');
 
+  const getRecipesFunction = useCallback(async () => {
+    const from = 0;
+    const to = 12;
+    const response = await fetch(`https://api.edamam.com/search?q=${search_query}&app_id=${APP_ID}&app_key=${APP_KEY.trim()}&from=${from}&to=${to}`);
+      const data = await response.json();
+      setFood_recipes(data.hits);
+  }, [search_query]); 
+
   useEffect(() => {
     getRecipesFunction();
-  }, [search_query]);
+  }, [getRecipesFunction]);
 
-  const getRecipesFunction = async () => {
-    const response = await fetch(`https://api.edamam.com/search?q=${search_query}&app_id=${APP_ID}&app_key=${APP_KEY}`)
-    const data = await response.json();
-    setFood_recipes(data.hits);
-  };
 
   const updateSearchFunction = (e) => {
     setSearch_recipe(e.target.value);
