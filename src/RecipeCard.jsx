@@ -6,7 +6,7 @@ const RecipeCard = ({ recipe }) => {
         <div className="relative">
             <img className="object-cover object-center w-full h-48 rounded-t-lg"
             src={recipe.image} alt={recipe.label} />
-            <div className="absolute px-2 py-1 text-white bg-green-500 rounded top-2 left-2">
+            <div className="absolute px-2 py-1 text-white rounded bg-lime-500 top-2 left-2">
                 {recipe.healthLabels[0]} | {recipe.dietLabels.length > 0 ? recipe.dietLabels[0] : 'Balanced'}
             </div>
         </div>

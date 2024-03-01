@@ -33,8 +33,8 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen font-sans bg-green-50">
-      <header className="py-4 text-white bg-green-500"> 
+    <div className="min-h-screen font-sans bg-lime-100">
+      <header className="py-8 text-white bg-lime-500 py-"> 
                 <div className="container mx-auto text-center"> 
                     <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"> 
                         <span className="block"> Recipe Finder App
